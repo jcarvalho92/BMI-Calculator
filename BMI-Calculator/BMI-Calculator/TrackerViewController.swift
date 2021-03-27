@@ -4,7 +4,8 @@
 //
 //  Created by Juliana de Carvalho on 2020-12-10.
 //  Copyright © 2020 Juliana de Carvalho. All rights reserved.
-//
+//  Student Id: 30113760
+//  Final Test
 
 import UIKit
 
@@ -97,6 +98,19 @@ class TrackerViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.db.delete(name: self.bmiData[indexPath.row].name, weight: self.bmiData[indexPath.row].weight, date: self.bmiData[indexPath.row].date)
         
          self.bmiData = self.db.read()
+        
+        //checking if the user deletes everything
+        if (self.bmiData.count == 0){
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            //ref to ViewController
+            guard let destinationViewController = mainStoryboard.instantiateViewController(withIdentifier: "mainViewController") as? ViewController else {
+                print("couldn't find the view controller")
+                return
+            }
+            self.navigationController?.pushViewController(destinationViewController, animated: true)
+        }
+        
+        
          // Deleting the row from the tableview
          tableView.beginUpdates()
          tableView.deleteRows(at: [indexPath],with: .automatic)
@@ -113,6 +127,7 @@ class TrackerViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
 
         bmiData = db.read()
+
         
         tableView.delegate = self
         tableView.dataSource = self

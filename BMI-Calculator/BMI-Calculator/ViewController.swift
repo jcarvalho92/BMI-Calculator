@@ -4,7 +4,8 @@
 //
 //  Created by Juliana de Carvalho on 2020-12-10.
 //  Copyright © 2020 Juliana de Carvalho. All rights reserved.
-//
+//  Student Id: 30113760
+//  Final Test
 
 import UIKit
 
@@ -43,7 +44,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var height: UITextField!
     @IBOutlet var unit: UISwitch!
     @IBOutlet var ageValue: UIStepper!
+    @IBOutlet var genderValue: UISegmentedControl!
     
+    @IBAction func CleanAction(_ sender: UIButton) {
+        
+        name.text = ""
+        weight.text = ""
+        height.text = ""
+        unit.isOn = true
+        ageValue.value = 1
+        age.text = String(ageValue.value)
+        genderValue.selectedSegmentIndex = 0
+    }
+    
+    @IBAction func genderAction(_ sender: UISegmentedControl) {
+        
+    }
     @IBAction func ageAction(_ sender: UIStepper) {
         age.text = String(Int(ageValue.value))
     }
@@ -92,7 +108,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         formatter.dateStyle = .medium
         let todayStr = formatter.string(from: today)
         
-       db.insert(name: name.text!, age: Int(age.text!)!, gender: "F", choosenUnit: (unit.isOn ? "metric" : "imperial"), weight: weightValue, height: heightValue, date: todayStr, bmiScore: Double(scoreTxt.text!)!)
+        db.insert(name: name.text!, age: Int(age.text!)!, gender: (genderValue.selectedSegmentIndex == 0 ? "F" : "M"), choosenUnit: (unit.isOn ? "metric" : "imperial"), weight: weightValue, height: heightValue, date: todayStr, bmiScore: Double(scoreTxt.text!)!)
 
         tableView.reloadData()
         

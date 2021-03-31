@@ -21,7 +21,7 @@ class MenuController: UITableViewController{
     init(with menuItems: [String]){
         self.menuItems = menuItems
         super.init(nibName: nil, bundle: nil)
-        tableView.backgroundColor = .darkGray
+        tableView.backgroundColor = .white
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellMenu")
     }
     
@@ -30,7 +30,7 @@ class MenuController: UITableViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .darkGray
+        tableView.backgroundColor = .white
      
     }
     
@@ -38,8 +38,8 @@ class MenuController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellMenu", for: indexPath)
         cell.textLabel?.text = menuItems[indexPath.row]
-        cell.textLabel?.textColor = .white
-        cell.backgroundColor = .darkGray
+        cell.textLabel?.textColor = .black
+        cell.backgroundColor = .white
 
         return cell
     }

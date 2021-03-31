@@ -8,6 +8,7 @@
 //  Final Test
 
 import UIKit
+import SideMenu
 
 struct Category{
     let title: String
@@ -15,7 +16,11 @@ struct Category{
     let finalRange: Double
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, MenuControllerDelegate{
+   
+    private var sideMenu: SideMenuNavigationController?
+    private let footstepController = FootstepViewController()
+    private let infoController = InfoViewController()
     
     private let data: [Category] = [
            Category(title: "Severe Thinness", initRange: 0, finalRange: 15.9),
@@ -27,12 +32,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            Category(title: "Obese Class 2", initRange:35, finalRange: 39.9),
            Category(title: "Obese Class 3", initRange:40, finalRange: 999),
        ]
+    
     var weightValue: Double = 0.0
     var heightValue: Double = 0.0
     var result: Double = -1
 
     var db: DBHelper = DBHelper()
-    
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet var categoriesLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
@@ -45,6 +51,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var unit: UISwitch!
     @IBOutlet var ageValue: UIStepper!
     @IBOutlet var genderValue: UISegmentedControl!
+    
+    @IBAction func didTapMenuButton(){
+        present(sideMenu!,animated: true)
+    }
+    
+    private func addChildControllers(){
+        addChild(footstepController)
+        addChild(infoController)
+    }
+    
+    func didSelectMenuItem(named: String) {
+        sideMenu?.dismiss(animated: true, completion: {[weak self] in
+            
+            self?.title = named
+
+            if named == "FootStep Count" {
+
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FootSteps") as! FootstepViewController
+                
+                self?.present(viewController, animated: false, completion: nil)
+
+            }
+            else if named == "Health Info" {
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HealthInfo") as! InfoViewController
+                self?.present(viewController, animated: false, completion: nil)
+            }
+        })
+        
+    }
     
     @IBAction func CleanAction(_ sender: UIButton) {
         
@@ -179,11 +214,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let menu = MenuController(with: ["BMI Calculation","FootStep Count","Health Info"])
+        menu.delegate = self
+        
+        sideMenu = SideMenuNavigationController(rootViewController: menu)
+        sideMenu?.leftSide = true
+        
+        SideMenuManager.default.leftMenuNavigationController = sideMenu
+        SideMenuManager.default.addPanGestureToPresent(toView: view)
          
-        age.text = String(Int(ageValue.value))
+        addChildControllers()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        age.text = String(Int(ageValue.value))
+
     }
     
     func showAlertInvalidInput(message: String){

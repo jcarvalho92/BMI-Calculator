@@ -14,6 +14,9 @@
 		C84022EE2583300200C67640 /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022ED2583300200C67640 /* TrackerViewController.swift */; };
 		C84022F02583658600C67640 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022EF2583658600C67640 /* DbHelper.swift */; };
 		C84022F22583662000C67640 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022F12583662000C67640 /* BMI.swift */; };
+		C8472F54261557BB006CC137 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8472F53261557BB006CC137 /* HealthKit.framework */; };
+		C8472F5826156418006CC137 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8472F5726156418006CC137 /* HealthStore.swift */; };
+		C8472F5B26157727006CC137 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8472F5A26157727006CC137 /* Step.swift */; };
 		C8529DCF2582F289000093DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8529DCE2582F289000093DA /* AppDelegate.swift */; };
 		C8529DD12582F289000093DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8529DD02582F289000093DA /* SceneDelegate.swift */; };
 		C8529DD32582F289000093DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8529DD22582F289000093DA /* ViewController.swift */; };
@@ -32,6 +35,10 @@
 		C84022ED2583300200C67640 /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		C84022EF2583658600C67640 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
 		C84022F12583662000C67640 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		C8472F52261557BB006CC137 /* BMI-Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BMI-Calculator.entitlements"; sourceTree = "<group>"; };
+		C8472F53261557BB006CC137 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C8472F5726156418006CC137 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
+		C8472F5A26157727006CC137 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		C8529DCB2582F289000093DA /* BMI-Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BMI-Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8529DCE2582F289000093DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8529DD02582F289000093DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8472F54261557BB006CC137 /* HealthKit.framework in Frameworks */,
 				C8529DE42582F37C000093DA /* libsqlite3.tbd in Frameworks */,
 				485F1FF66FFA9FC24921A490 /* Pods_BMI_Calculator.framework in Frameworks */,
 			);
@@ -89,6 +97,8 @@
 		C8529DCD2582F289000093DA /* BMI-Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				C8472F52261557BB006CC137 /* BMI-Calculator.entitlements */,
+				C8472F5A26157727006CC137 /* Step.swift */,
 				C8529DCE2582F289000093DA /* AppDelegate.swift */,
 				C8529DD02582F289000093DA /* SceneDelegate.swift */,
 				C8529DD22582F289000093DA /* ViewController.swift */,
@@ -102,6 +112,7 @@
 				C82F8FE2261415E500B99656 /* SideMenu.swift */,
 				C82F8FE52614169D00B99656 /* InfoViewController.swift */,
 				C82F8FE82614176F00B99656 /* FootstepViewController.swift */,
+				C8472F5726156418006CC137 /* HealthStore.swift */,
 			);
 			path = "BMI-Calculator";
 			sourceTree = "<group>";
@@ -109,6 +120,7 @@
 		C8529DE22582F37C000093DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8472F53261557BB006CC137 /* HealthKit.framework */,
 				C8529DE32582F37C000093DA /* libsqlite3.tbd */,
 				A6E57D42299371AF72A0D42D /* Pods_BMI_Calculator.framework */,
 			);
@@ -231,7 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8472F5B26157727006CC137 /* Step.swift in Sources */,
 				C8529DD32582F289000093DA /* ViewController.swift in Sources */,
+				C8472F5826156418006CC137 /* HealthStore.swift in Sources */,
 				C82F8FE92614176F00B99656 /* FootstepViewController.swift in Sources */,
 				C84022EE2583300200C67640 /* TrackerViewController.swift in Sources */,
 				C8529DCF2582F289000093DA /* AppDelegate.swift in Sources */,
@@ -385,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "BMI-Calculator/BMI-Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6FT28YTB3;
 				INFOPLIST_FILE = "BMI-Calculator/Info.plist";
@@ -407,6 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "BMI-Calculator/BMI-Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6FT28YTB3;
 				INFOPLIST_FILE = "BMI-Calculator/Info.plist";

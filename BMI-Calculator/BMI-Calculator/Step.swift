@@ -8,8 +8,17 @@
 
 import Foundation
 
-struct Step: Identifiable {
-    let id = UUID()
-    let count: Int
-    let date: Date
+class Step
+{
+    var qtySteps: Double = 0.0
+    var dateSteps: String = ""
+
+    init(qtySteps:Double, dateSteps:String)
+    {
+        self.qtySteps = qtySteps
+        self.dateSteps = dateSteps
+    }
+    
+    
+    
 }

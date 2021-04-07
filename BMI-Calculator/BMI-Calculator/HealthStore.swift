@@ -4,7 +4,8 @@
 //
 //  Created by Juliana de Carvalho on 2021-03-31.
 //  Copyright © 2021 Juliana de Carvalho. All rights reserved.
-//
+//  Student 1: Abdeali Mody - Student Id: 301085484
+//  Student 2: Juliana de Carvalho - Student Id: 301137060
 
 import Foundation
 import HealthKit

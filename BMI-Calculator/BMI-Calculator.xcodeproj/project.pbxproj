@@ -24,6 +24,7 @@
 		C8529DD82582F28B000093DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8529DD72582F28B000093DA /* Assets.xcassets */; };
 		C8529DDB2582F28B000093DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8529DD92582F28B000093DA /* LaunchScreen.storyboard */; };
 		C8529DE42582F37C000093DA /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8529DE32582F37C000093DA /* libsqlite3.tbd */; };
+		C8FE00F9261BEFE500BC1192 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FE00F8261BEFE500BC1192 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		C8529DDC2582F28B000093DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8529DE32582F37C000093DA /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C8529DE52582F406000093DA /* BMI-Calculator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMI-Calculator-Bridging-Header.h"; sourceTree = "<group>"; };
+		C8FE00F8261BEFE500BC1192 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		D1F1AC1D13CF3187FBE08057 /* Pods-BMI-Calculator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI-Calculator.release.xcconfig"; path = "Target Support Files/Pods-BMI-Calculator/Pods-BMI-Calculator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				C82F8FE52614169D00B99656 /* InfoViewController.swift */,
 				C82F8FE82614176F00B99656 /* FootstepViewController.swift */,
 				C8472F5726156418006CC137 /* HealthStore.swift */,
+				C8FE00F8261BEFE500BC1192 /* Notifications.swift */,
 			);
 			path = "BMI-Calculator";
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FE00F9261BEFE500BC1192 /* Notifications.swift in Sources */,
 				C8472F5B26157727006CC137 /* Step.swift in Sources */,
 				C8529DD32582F289000093DA /* ViewController.swift in Sources */,
 				C8472F5826156418006CC137 /* HealthStore.swift in Sources */,

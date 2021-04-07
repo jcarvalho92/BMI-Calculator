@@ -14,6 +14,7 @@ class DBHelper{
   init()
   {
       db = openDatabase()
+    //dropTable()
       createTable()
 
   }
@@ -54,7 +55,7 @@ class DBHelper{
       sqlite3_finalize(createTableStatement)
     //creating StepsCount table
     let createStepsTableString = "CREATE TABLE IF NOT EXISTS StepsCount " +
-                            "(STEPS DOUBLE, DATE CHAR(20) );"
+                            "(STEPS DOUBLE, DATE CHAR(20), GOAL DOUBLE );"
     var createStepsTableStatement: OpaquePointer? = nil
     if sqlite3_prepare_v2(db, createStepsTableString, -1, &createStepsTableStatement, nil) == SQLITE_OK
     {
@@ -86,7 +87,7 @@ class DBHelper{
       }
       sqlite3_finalize(dropTableStatement)
     
-    let dropStepsTableString = "DROP TABLE IF EXISTS BMI ;"
+    let dropStepsTableString = "DROP TABLE IF EXISTS StepsCount ;"
     var dropStepsTableStatement: OpaquePointer? = nil
     if sqlite3_prepare_v2(db, dropStepsTableString, -1, &dropStepsTableStatement, nil) == SQLITE_OK
     {
@@ -120,11 +121,11 @@ class DBHelper{
       sqlite3_finalize(insertStatement)
   }
     
-  func insertSteps(steps: Double, date: String)
+  func insertSteps(steps: Double, date: String, goal: Double)
   {
         
-        let insertStatementString = "INSERT INTO StepsCount (STEPS, DATE)  " +
-            " SELECT \(steps), '\(date)' " +
+        let insertStatementString = "INSERT INTO StepsCount (STEPS, DATE, GOAL)  " +
+            " SELECT \(steps), '\(date)', '\(goal)' " +
             " WHERE NOT EXISTS(SELECT 1 FROM StepsCount WHERE date = '\(date)' );"
 
     
@@ -186,7 +187,7 @@ class DBHelper{
   }
     
     func readSteps() -> [Step] {
-        let queryStatementString = "SELECT  STEPS, DATE FROM StepsCount "
+        let queryStatementString = "SELECT  STEPS, DATE, GOAL FROM StepsCount "
         var queryStatement: OpaquePointer? = nil
         var stepData : [Step] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
@@ -194,10 +195,11 @@ class DBHelper{
              
               let steps = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
               let date = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
-           
-                stepData.append(Step(qtySteps: Double(steps)!, dateSteps: date))
-              print("Query Result:")
-              print("\(steps) | \(date)")
+              let goal = String(describing: String(cString: sqlite3_column_text(queryStatement, 2)))
+                
+                stepData.append(Step(qtySteps: Double(steps)!, dateSteps: date, goal: Double(goal)!))
+              //print("Query Result:")
+              //print("\(steps) | \(date)")
             }
         } else {
             print("SELECT statement could not be prepared")

@@ -13,6 +13,15 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if(Style.DarkOn == true){
+            self.view.backgroundColor = Style.DarkBackgroundColor
+        }
+        
+        if(Style.LightOn == true){
+            self.view.backgroundColor = Style.LightBackgroundColor
+        }
+
+        
     }
     
 

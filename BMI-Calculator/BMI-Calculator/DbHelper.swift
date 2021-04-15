@@ -14,7 +14,7 @@ class DBHelper{
   init()
   {
       db = openDatabase()
-    //dropTable()
+      //dropStepsCountTable()
       createTable()
 
   }
@@ -102,6 +102,24 @@ class DBHelper{
     }
     sqlite3_finalize(dropStepsTableStatement)
   }
+    
+  func dropStepsCountTable() {
+      
+      let dropStepsTableString = "DROP TABLE IF EXISTS StepsCount ;"
+      var dropStepsTableStatement: OpaquePointer? = nil
+      if sqlite3_prepare_v2(db, dropStepsTableString, -1, &dropStepsTableStatement, nil) == SQLITE_OK
+      {
+          if sqlite3_step(dropStepsTableStatement) == SQLITE_DONE
+          {
+              print("stepsCount table droped.")
+          } else {
+              print("stepsCount table could not be droped.")
+          }
+      } else {
+          print("DROP TABLE statement could not be prepared.")
+      }
+      sqlite3_finalize(dropStepsTableStatement)
+  }
 
   func insert(name: String, age: Int, gender: String, choosenUnit: String, weight: Double, height: Double, date: String, bmiScore: Double)
   {
@@ -123,7 +141,7 @@ class DBHelper{
     
   func insertSteps(steps: Double, date: String, goal: Double)
   {
-        
+    
         let insertStatementString = "INSERT INTO StepsCount (STEPS, DATE, GOAL)  " +
             " SELECT \(steps), '\(date)', '\(goal)' " +
             " WHERE NOT EXISTS(SELECT 1 FROM StepsCount WHERE date = '\(date)' );"
@@ -161,6 +179,25 @@ class DBHelper{
         sqlite3_finalize(updateStatement)
     }
 
+    func updateGoal(goal: Double)
+    {
+
+        let updateStatementString = "UPDATE StepsCount SET GOAL = '\(goal)'   ;"
+        var updateStatement: OpaquePointer? = nil
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+  
+                print("Successfully updated row.")
+            } else {
+                print("Could not update row.")
+            }
+        } else {
+            print("Update statement could not be prepared.")
+        }
+        sqlite3_finalize(updateStatement)
+    }
+
+    
   func read() -> [BMI] {
       let queryStatementString = "SELECT NAME, AGE, GENDER, CHOOSENUNIT, WEIGHT, HEIGHT, DATE, BMISCORE FROM BMI "
       var queryStatement: OpaquePointer? = nil

@@ -14,6 +14,8 @@
 		C84022EE2583300200C67640 /* TrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022ED2583300200C67640 /* TrackerViewController.swift */; };
 		C84022F02583658600C67640 /* DbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022EF2583658600C67640 /* DbHelper.swift */; };
 		C84022F22583662000C67640 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84022F12583662000C67640 /* BMI.swift */; };
+		C8445FC92627509800EBD9B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445FC82627509800EBD9B2 /* SettingsViewController.swift */; };
+		C8445FCD2627605200EBD9B2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8445FCC2627605200EBD9B2 /* Style.swift */; };
 		C8472F54261557BB006CC137 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8472F53261557BB006CC137 /* HealthKit.framework */; };
 		C8472F5826156418006CC137 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8472F5726156418006CC137 /* HealthStore.swift */; };
 		C8472F5B26157727006CC137 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8472F5A26157727006CC137 /* Step.swift */; };
@@ -36,6 +38,8 @@
 		C84022ED2583300200C67640 /* TrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewController.swift; sourceTree = "<group>"; };
 		C84022EF2583658600C67640 /* DbHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHelper.swift; sourceTree = "<group>"; };
 		C84022F12583662000C67640 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		C8445FC82627509800EBD9B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C8445FCC2627605200EBD9B2 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		C8472F52261557BB006CC137 /* BMI-Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BMI-Calculator.entitlements"; sourceTree = "<group>"; };
 		C8472F53261557BB006CC137 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C8472F5726156418006CC137 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				C82F8FE82614176F00B99656 /* FootstepViewController.swift */,
 				C8472F5726156418006CC137 /* HealthStore.swift */,
 				C8FE00F8261BEFE500BC1192 /* Notifications.swift */,
+				C8445FC82627509800EBD9B2 /* SettingsViewController.swift */,
+				C8445FCC2627605200EBD9B2 /* Style.swift */,
 			);
 			path = "BMI-Calculator";
 			sourceTree = "<group>";
@@ -251,11 +257,13 @@
 				C8529DD32582F289000093DA /* ViewController.swift in Sources */,
 				C8472F5826156418006CC137 /* HealthStore.swift in Sources */,
 				C82F8FE92614176F00B99656 /* FootstepViewController.swift in Sources */,
+				C8445FCD2627605200EBD9B2 /* Style.swift in Sources */,
 				C84022EE2583300200C67640 /* TrackerViewController.swift in Sources */,
 				C8529DCF2582F289000093DA /* AppDelegate.swift in Sources */,
 				C82F8FE3261415E500B99656 /* SideMenu.swift in Sources */,
 				C84022F02583658600C67640 /* DbHelper.swift in Sources */,
 				C84022F22583662000C67640 /* BMI.swift in Sources */,
+				C8445FC92627509800EBD9B2 /* SettingsViewController.swift in Sources */,
 				C82F8FE62614169D00B99656 /* InfoViewController.swift in Sources */,
 				C8529DD12582F289000093DA /* SceneDelegate.swift in Sources */,
 			);

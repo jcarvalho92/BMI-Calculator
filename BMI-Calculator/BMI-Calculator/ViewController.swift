@@ -40,10 +40,18 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     var db: DBHelper = DBHelper()
 
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var categoriesLabel: UILabel!
-    @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var scoreTxt: UITextField!
 
+    @IBOutlet var genderLabel: UILabel!
+    @IBOutlet var ageLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var weightLabel: UILabel!
+    @IBOutlet var heightLabel: UILabel!
+    @IBOutlet var bmiLabel: UILabel!
+    @IBOutlet var categoriesLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var bmiCalculationLabel: UILabel!
+    
     @IBOutlet var age: UITextField!
     @IBOutlet var name: UITextField!
     @IBOutlet var weight: UITextField!
@@ -73,9 +81,14 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                 self?.present(viewController, animated: false, completion: nil)
 
             }
-            else if named == "Health Info" {
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HealthInfo") as! InfoViewController
+            else if named == "Help" {
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Help") as! InfoViewController
                 self?.present(viewController, animated: false, completion: nil)
+            }
+            else if named == "Settings" {
+                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Settings") as! SettingsViewController
+                viewController.modalPresentationStyle = .fullScreen
+                self?.present(viewController, animated: true)
             }
         })
         
@@ -118,7 +131,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     @IBAction func submit(_ sender: UIButton) {
         categoriesLabel.text = "See your Category below!!!"
         scoreTxt.isHidden = false
-        scoreLabel.isHidden = false
+        bmiLabel.isHidden = false
         
         var value = weight.text
         weightValue = (value! as NSString).doubleValue
@@ -210,12 +223,43 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
         return cell
     }
-    
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        let DefaultDefault = UserDefaults.standard
+        Style.DefaultOn = DefaultDefault.bool(forKey: "DefaultDefault")
+        
+        let LightDefault = UserDefaults.standard
+        Style.LightOn = LightDefault.bool(forKey: "LightDefault")
+        
+        let DarkDefault = UserDefaults.standard
+        Style.DarkOn = DarkDefault.bool(forKey: "DarkDefault")
+       
+        if(Style.DarkOn == true){
+            self.view.backgroundColor = Style.DarkBackgroundColor
+            genderLabel.textColor = UIColor.systemGreen
+            ageLabel.textColor = UIColor.systemGreen
+            nameLabel.textColor = UIColor.systemGreen
+            weightLabel.textColor = UIColor.systemGreen
+            heightLabel.textColor = UIColor.systemGreen
+            bmiLabel.textColor = UIColor.systemGreen
+            categoriesLabel.textColor = UIColor.systemGreen
+            titleLabel.textColor = UIColor.systemGreen
+            bmiCalculationLabel.textColor = UIColor.systemGreen
+        }
+        
+        if(Style.LightOn == true){
+            self.view.backgroundColor = Style.LightBackgroundColor
+        }
+    }
+
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menu = MenuController(with: ["BMI Calculation","FootStep Count","Health Info"])
+    
+        let menu = MenuController(with: ["BMI Calculation","FootStep Count","Help", "Settings"])
         menu.delegate = self
         
         sideMenu = SideMenuNavigationController(rootViewController: menu)

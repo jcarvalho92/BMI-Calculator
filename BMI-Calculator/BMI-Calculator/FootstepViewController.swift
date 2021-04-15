@@ -15,10 +15,14 @@ class FootstepViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var goal: UITextField!
     
+    @IBOutlet var editGoalBtn: UIButton!
+    @IBOutlet var goalLabel: UILabel!
     @IBOutlet var msgReachedGoal: UILabel!
     @IBAction func changeGoal(_ sender: UIButton) {
         let newGoalStr = goal.text ?? "0"
         newGoal = Double(newGoalStr)!
+        
+        db.updateGoal(goal: newGoal)
     }
     
     var healthStore: HealthStore = HealthStore()
@@ -60,6 +64,16 @@ class FootstepViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        if(Style.DarkOn == true){
+            self.view.backgroundColor = Style.DarkBackgroundColor
+            goalLabel.textColor = UIColor.systemGreen
+            editGoalBtn.setImage(UIImage(named: "pencilWhite"), for: .normal)
+        }
+        
+        if(Style.LightOn == true){
+            self.view.backgroundColor = Style.LightBackgroundColor
+        }
+        
         let today = Date()
         let formatter = DateFormatter()
         formatter.timeStyle = .none
